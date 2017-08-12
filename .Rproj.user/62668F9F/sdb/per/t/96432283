@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\ncor_mfpt_fa <- rep(NULL, numSteps)\nfor(steps in 1:numSteps){\n    cor_mfpt_fa[steps] <- cor(c(fracArr_SCden[steps, , ]), c(mfpt_SCden[steps, ,]),use = \"pairwise.complete.obs\")\n}\n\ncor_mfpt_narr <- rep(NULL, numSteps)\nfor(steps in 1:numSteps){\n    cor_mfpt_narr[steps] <- cor(c(nArr_SCden[steps, , ]), c(mfpt_SCden[steps, ,]),use = \"pairwise.complete.obs\")\n}\n\ncor_narr_fa <- rep(NULL, numSteps)\nfor(steps in 1:numSteps){\n    cor_narr_fa[steps] <- cor(c(fracArr_SCden[steps, , ]), c(nArr_SCden[steps, ,]),use = \"pairwise.complete.obs\")\n}\n\nstepVec <- seq(1, numSteps)\n\ncor_matrix = as.data.frame(cbind(stepVec, cor_mfpt_fa, cor_mfpt_narr, cor_narr_fa))\ncolnames(cor_matrix) <- c(\"stepVec\",\"cor_mfpt_fa\",\"cor_mfpt_narr\", \"cor_narr_fa\")\n\n\nlibrary(ggplot2)\nggplot(data = cor_matrix, aes(x= stepVec, y = value, color = variable)) + \n    geom_point(aes(y = cor_mfpt_fa, col = \"fracA-mfpt\")) + \n    geom_line(aes(y = cor_mfpt_fa, col = \"fracA-mfpt\")) + \n    geom_point(aes(y = cor_mfpt_narr, col = \"mfpt-narr\")) +  \n    geom_line(aes(y = cor_mfpt_narr, col = \"mfpt-narr\")) + \n    geom_point(aes(y = cor_narr_fa, col = \"nArr-fracA\")) + \n    geom_line(aes(y = cor_narr_fa, col = \"nArr-fracA\")) + \n    labs(x=\"Step\", y=\"Correlation\")\n\nggsave(paste(getwd(),\"/limited_time_mfpt\",\"/results\",\"/corr_vars.png\", sep = '/'))\n\n",
+    "created" : 1461061358819.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "156059682",
+    "id" : "96432283",
+    "lastKnownWriteTime" : 1461022122,
+    "last_content_update" : 1461022122,
+    "path" : "/run/media/renge/Beta/Documents/Research/limited_time_mfpt/code/var_cor.R",
+    "project_path" : "limited_time_mfpt/code/var_cor.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
